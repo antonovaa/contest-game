@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="BooK">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="js/kldsjgnk.js"></script>
+    <script type="text/javascript" src="js/ouhn.js"></script>
+    <script type="text/javascript" src="js/messenf.js"></script>
 </head>
-<body>
+<body ng-controller="Bool" >
 
+
+<div  >
+    <input type="button" ng-click="a()">
+    <ul>
+        <li ng-repeat="xc in xs">
+           <h1>a={{xc.d}}</h1>
+        </li>
+    </ul>
+</div>
+<div class="row" ng-controller="FrontPageController">
+    <div class="span8 offset1">
+        <h1>Messages</h1>
+        <p ng-repeat="message in messages">{{message}}</p>
+    </div>
+</div>
+<div >fgfg</div>
 </body>
 </html>
