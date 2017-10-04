@@ -37,17 +37,17 @@ public class MainController {
     {
 //        System.out.println("in controller");
 //        ModelAndView mv = new ModelAndView("static/index");
-//        mv.setViewName("/index.html");
+//        mv.setViewName("/рhiindex.html");
 //        mv.addObject("message", message);
         //mv.addObject("name", name);
 //        return mv;
     }
 
 
-    @RequestMapping("/")
-    String index(){
-        return "index";
-    }
+//    @RequestMapping("/")
+//    String index(){
+//        return "index";
+//    }
 
     @RequestMapping("/hellos")
 //    @ResponseBody

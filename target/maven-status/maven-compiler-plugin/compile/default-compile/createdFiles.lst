@@ -1,4 +1,5 @@
 com\controller\GreetingController.class
+com\model\Greeting.class
 com\service\ServiceData.class
 com\batis\AuthDao$AuthEventMapper.class
 com\model\Student.class
@@ -8,5 +9,6 @@ com\model\Data.class
 com\batis\AuthDao.class
 com\model\interf\DomainObject.class
 com\controller\MainController.class
+com\model\HelloMessage.class
 com\Application.class
 com\controller\MessageController.class
