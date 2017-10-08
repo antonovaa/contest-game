@@ -8,9 +8,9 @@ import org.springframework.context.annotation.ComponentScan;
 /**
  * Created by Lord on 22.09.2017.
  */
-@EnableAutoConfiguration
+//@EnableAutoConfiguration
 @SpringBootApplication
-@ComponentScan
+//@ComponentScan
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);

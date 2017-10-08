@@ -39,8 +39,8 @@ public class JdbcConfig extends AbstractWebSocketMessageBrokerConfigurer {
     @Bean
     public static DataSource dataSource() {
         return new DriverManagerDataSource(
-                "jdbc:postgresql://localhost:5432/contest-game",
-                "postgres",
+                "jdbc:postgresql://192.168.1.242:5432/contest-game",
+                "testremote",
                 "postgres"
         );
     }

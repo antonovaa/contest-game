@@ -17,9 +17,9 @@ booK.controller('FrontPageController', function ($scope, $http) {
     };
 
     function setConnected(connected) {
-        document.getElementById('connect').disabled = connected;
-        document.getElementById('disconnect').disabled = !connected;
-        document.getElementById('conversationDiv').style.visibility = connected ? 'visible' : 'hidden';
+        // document.getElementById('connect').disabled = connected;
+        // document.getElementById('disconnect').disabled = !connected;
+        // document.getElementById('conversationDiv').style.visibility = connected ? 'visible' : 'hidden';
         document.getElementById('response').innerHTML = '';
     }
 

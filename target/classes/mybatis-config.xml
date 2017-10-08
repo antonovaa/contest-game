@@ -9,8 +9,8 @@
 
             <dataSource type = "POOLED">
                 <property name = "driver" value = "org.postgresql.Driver"/>
-                <property name = "url" value = "jdbc:postgresql://localhost:5432/contest-game"/>
-                <property name = "username" value = "postgres"/>
+                <property name = "url" value = "jdbc:postgresql://192.168.1.242:5432/contest-game"/>
+                <property name = "username" value = "testremote"/>
                 <property name = "password" value = "postgres"/>
             </dataSource>
 

@@ -18,37 +18,38 @@ import java.util.List;
 public class AuthDao {
 
 
-    private final SqlSessionFactory sqlSessionFactory;
-    private final JdbcTemplate jdbcTemplate;
+  private final SqlSessionFactory sqlSessionFactory;
+  private final JdbcTemplate jdbcTemplate;
 
 
-    @Autowired
-    public AuthDao(SqlSessionFactory sqlSessionFactory, JdbcTemplate jdbcTemplate) {
-        this.sqlSessionFactory = sqlSessionFactory;
-        this.jdbcTemplate=jdbcTemplate;
+  @Autowired
+  public AuthDao(SqlSessionFactory sqlSessionFactory, JdbcTemplate jdbcTemplate) {
+    this.sqlSessionFactory = sqlSessionFactory;
+    this.jdbcTemplate = jdbcTemplate;
+  }
+
+  @PostConstruct
+  public void addAuthEventMapper() {
+    //  sqlSessionFactory.getConfiguration().addMapper(AuthEventMapper.class);
+  }
+
+  public void save(Data data) {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      AuthEventMapper authEventMapper = sqlSession.getMapper(AuthEventMapper.class);
+      authEventMapper.saveLoginEvent(data);
+      sqlSession.commit();
     }
+  }
 
-    @PostConstruct
-    public void addAuthEventMapper() {
-      //  sqlSessionFactory.getConfiguration().addMapper(AuthEventMapper.class);
+  public void closeSession(String jSessionId, Data data) {
+    SqlSession sqlSession = sqlSessionFactory.openSession();
+    try (sqlSession) {
+      AuthEventMapper authEventMapper = sqlSession.getMapper(AuthEventMapper.class);
+      LocalDateTime closeDate = LocalDateTime.now();
+      authEventMapper.closeSession(jSessionId, closeDate, data);
+      sqlSession.commit();
     }
-
-    public void save(Data data) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            AuthEventMapper authEventMapper = sqlSession.getMapper(AuthEventMapper.class);
-            authEventMapper.saveLoginEvent(data);
-            sqlSession.commit();
-        }
-    }
-
-    public void closeSession(String jSessionId, Data data) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            AuthEventMapper authEventMapper = sqlSession.getMapper(AuthEventMapper.class);
-            LocalDateTime closeDate = LocalDateTime.now();
-            authEventMapper.closeSession(jSessionId, closeDate, data);
-            sqlSession.commit();
-        }
-    }
+  }
 
 //    public Data getPersonByLogin(int data) {
 //        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
@@ -57,18 +58,19 @@ public class AuthDao {
 //        }
 //    }
 
-    public Person getdatabyid(String data) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            AuthEventMapper authEventMapper = sqlSession.getMapper(AuthEventMapper.class);
-            return authEventMapper.getPersonByLogin(data);
-        }
+  public Person getdatabyid(String data) {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      AuthEventMapper authEventMapper = sqlSession.getMapper(AuthEventMapper.class);
+      return authEventMapper.getPersonByLogin(data);
     }
-    public List<Person> getAllPerson() {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            AuthEventMapper authEventMapper = sqlSession.getMapper(AuthEventMapper.class);
-            return authEventMapper.getAllPerson();
-        }
+  }
+
+  public List<Person> getAllPerson() {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      AuthEventMapper authEventMapper = sqlSession.getMapper(AuthEventMapper.class);
+      return authEventMapper.getAllPerson();
     }
+  }
 //    public void updateLastRequests(Collection<String> jSessionIds) {
 //        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
 //            AuthEventMapper authEventMapper = sqlSession.getMapper(AuthEventMapper.class);
@@ -79,31 +81,30 @@ public class AuthDao {
 //    }
 
 
-    public interface AuthEventMapper {
+  public interface AuthEventMapper {
 
-        void saveLoginEvent(Data data);
+    void saveLoginEvent(Data data);
 
-        // void updateLastRequests(@Param("jSessionIds") String[] jSessionId);
-
+    // void updateLastRequests(@Param("jSessionIds") String[] jSessionId);
 
 //        @Select("select * from data where id = #{id}")
 //        public Data getPersonByLogin(int id);
 
-        @Select("select * from person where login = #{login}")
-        public Person getPersonByLogin(String login);
+    @Select("select * from person where login = #{login}")
+    public Person getPersonByLogin(String login);
 
 //        public static Person getPersonByLogin(String login)
 //        {
 //            return new Person();
 //        }
 
-        //@Select("select * from public.person")
-        public List<Person> getAllPerson();
+    //@Select("select * from public.person")
+    public List<Person> getAllPerson();
 
-        void closeSession(
-                String jSessionId,
-                LocalDateTime closeDate,
-                Data data
-        );
-    }
+    void closeSession(
+        String jSessionId,
+        LocalDateTime closeDate,
+        Data data
+    );
+  }
 }
