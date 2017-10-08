@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="postgres@localhost" uuid="5fe8e57e-96e0-4d68-88b8-e580df85f708">
+  <component name="DataSourceManagerImpl" format="xml" hash="958758453">
+    <data-source source="LOCAL" name="PostgreSQL - postgres@localhost" uuid="749fa1fd-1075-4439-bfeb-cdc8d26be9e4">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
-      <driver-properties>
-        <property name="ApplicationName" value="DataGrip" />
-      </driver-properties>
     </data-source>
   </component>
 </project>
