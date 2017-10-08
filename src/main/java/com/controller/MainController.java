@@ -44,10 +44,10 @@ public class MainController {
     }
 
 
-//    @RequestMapping("/")
-//    String index(){
-//        return "index";
-//    }
+    @RequestMapping("/")
+    String index(){
+        return "index.html";
+    }
 
     @RequestMapping("/hellos")
 //    @ResponseBody

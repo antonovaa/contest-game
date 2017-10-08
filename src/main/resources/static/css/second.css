@@ -2,3 +2,13 @@ head
 {
     color: red;
 }
+.mystyle
+{
+    background-color: turquoise;
+    margin: 200px 200px;
+    /*padding: 200px 200px;*/
+}
+.mystyle3
+{
+    height: 1500px;
+}
