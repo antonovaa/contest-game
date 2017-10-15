@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="node_modules/vue/dist/vue.min.js"></script>
+  <!--<script src="js/MyFerstVue.js"></script>-->
+</head>
+<body>
+<div id="app">
+  <p>{{ message }}</p>
+</div>
+
+<div id="app-2">
+  <span :title="message">
+    Подержи курсор надо мной пару секунд,
+    чтобы увидеть динамически связанное значение title!
+  </span>
+</div>
+
+<div id="app-3">
+  <span v-if="seen">Now you see me</span>
+</div>
+<br>
+<br>
+<div id="app-4">
+  <ol>
+    <li v-for="todo in todoS">
+      {{ todo.text }}
+    </li>
+  </ol>
+</div>
+
+<div id="app-5s">
+  <ol>
+    <li v-for="x in [5,3,2,4,5]">
+      {{ x }}
+    </li>
+  </ol>
+</div>
+
+<div id="app-5">
+  <p>{{ message }}</p>
+  <button v-on:click="reverseMessage">Обратить порядок букв в сообщении</button>
+</div>
+
+<div id="app-6">
+  <p>{{ message }}</p>
+  <input v-model="message">
+</div>
+<div id="app-7">
+  <ol>
+    <!--
+      Теперь мы можем передать каждому компоненту todo объект
+      с информацией о задаче, который будет динамически меняться.
+      Мы также определяем для каждого компонента "key",
+      значение которого будет объяснено далее в руководстве.
+    -->
+    <todof-item
+        v-for="item in groceryList"
+        v-bind:todosdsd="item"
+        v-bind:key="item.id">
+    </todof-item>
+  </ol>
+</div>
+<div id="app-7s">
+  <ul>
+    <todoTem
+        v-bind:todoTem="item"
+    ></todoTem>
+  </ul>
+</div>
+
+
+<script src="js/MyFerstVue.js"></script>
+
+</body>
+</html>
