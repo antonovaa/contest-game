@@ -51,7 +51,7 @@ public class JdbcConfig extends AbstractWebSocketMessageBrokerConfigurer {
     public JdbcTemplate ServiceData() {
         return new JdbcTemplate(dataSource());
     }
-
+//
 //        @Bean
 //        public SqlSessionFactory sqlSessionFactory(DataSource dataSourse) {
 //            Environment environment = new Environment("development",

@@ -4,11 +4,20 @@ head
 }
 .mystyle
 {
-    background-color: turquoise;
-    margin: 200px 200px;
+    background-color: #8ae00e;
+    margin: 100px 450px;
+    align-content: center;
     /*padding: 200px 200px;*/
+}
+.mystyle >div
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #ff0025;
 }
 .mystyle3
 {
-    height: 1500px;
+    height: auto;
 }

@@ -3,6 +3,7 @@ package com.controller;
 
 import com.model.Greeting;
 import com.model.HelloMessage;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.annotation.SubscribeMapping;
@@ -20,19 +21,18 @@ public class MessageController {
 
 
 
-    @MessageMapping("/hello")
-    @SendTo("/topic/greetings")
-    public Greeting greeting7(HelloMessage message){
-        System.out.println("inside greeting");
-        return new Greeting("Hello, " + message.getName() + "!");
+    @MessageMapping( value = "/hello/{name}")
+@SendTo("/topic/greetings")
+    public Greeting greeting7(@DestinationVariable String name,HelloMessage message){
+        return new Greeting(message.getSometext(),name);
     }
 
 
-    @SubscribeMapping("/topic/greetings")
-    public Greeting try1() {
-        System.out.println("inside TRY 1");
-        return new Greeting("Hello, " + "TRY 1" + "!");
-    }
+//    @SubscribeMapping("/topic/greetings")
+//    public Greeting try1() {
+//        System.out.println("inside TRY 1");
+//        return new Greeting("Hello, " + "TRY 1" + "!");
+//    }
 
     @RequestMapping(value = "/sea",consumes = "application/json",
             method = {RequestMethod.POST,RequestMethod.GET},
