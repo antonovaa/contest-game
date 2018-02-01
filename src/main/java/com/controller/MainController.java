@@ -1,9 +1,15 @@
 package com.controller;
 
-import com.batis.AuthDao;
+//import com.batis.AuthDao;
+//import com.model.Greeting;
+import com.model.LoginForm;
+import com.model.RegistrationForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -13,14 +19,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 //@RestController("/asd")
 public class MainController {
 
-    @Autowired
-    private AuthDao authDao;
-
-    @RequestMapping("/asd")
-    @ResponseBody
-    public String person() {
-        return authDao.getAllPerson().toString();
-    }
+//    @Autowired
+//    private AuthDao authDao;
+//
+//    @RequestMapping("/asd")
+//    @ResponseBody
+//    public String person() {
+//        return authDao.getAllPerson().toString();
+//    }
 
     @RequestMapping("/d")
     @ResponseBody
@@ -42,6 +48,33 @@ public class MainController {
         //mv.addObject("name", name);
 //        return mv;
     }
+
+
+//    @RequestMapping(value = "/testform",consumes = "application/json",
+//        method = {RequestMethod.POST,RequestMethod.GET},
+//        produces = "application/json")
+//    @ResponseBody
+//    public String greeting3(
+//        String s
+//
+//    ) throws Exception {
+//        System.out.println("inside greeting");
+//        return " Привет";
+//    }
+
+
+    @RequestMapping(value="/testformlog", method=RequestMethod.POST)
+    public String greetingSubmit(@ModelAttribute LoginForm loginForm, Model model) {
+        model.addAttribute("greeting", loginForm);
+        return "result";
+    }
+    @RequestMapping(value="/testformpass", method=RequestMethod.POST)
+    public String greetingSubmit(@ModelAttribute RegistrationForm registrationForm, Model model) {
+        model.addAttribute("registrationForm", registrationForm);
+        return "result";
+    }
+
+
 
 
     @RequestMapping("/")

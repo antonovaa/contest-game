@@ -1,5 +1,5 @@
 <template>
-  <!--<div id="app">-->
+  <!--<div username="app">-->
     <!--<img src="./assets/logo.png">-->
     <!--<h1>{{ msg }}</h1>-->
     <!--<h2>Essential Links</h2>-->
@@ -17,9 +17,9 @@
       <!--<li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>-->
     <!--</ul>-->
   <!--</div>-->
-<div id="app">
+<div username="app">
   <h1>{{ msg2 }}</h1>
-  <div id="canvas" @mousemove="updateXY">
+  <div username="canvas" @mousemove="updateXY">
 {{x}}         {{y}}
   </div>
 </div>
