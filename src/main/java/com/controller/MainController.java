@@ -4,7 +4,6 @@ package com.controller;
 //import com.model.Greeting;
 import com.model.LoginForm;
 import com.model.RegistrationForm;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -40,14 +39,14 @@ public class MainController {
 //    @RequestMapping(value = {"/", "/helloworld**"}, method = {RequestMethod.GET,RequestMethod.POST})
 //    public ModelAndView showMessage()
     //@RequestParam(value = "name", required = false, defaultValue = "World") String name)
-    {
+//    {
 //        System.out.println("in controller");
 //        ModelAndView mv = new ModelAndView("static/index");
 //        mv.setViewName("/рhiindex.html");
 //        mv.addObject("message", message);
         //mv.addObject("name", name);
 //        return mv;
-    }
+//    }
 
 
 //    @RequestMapping(value = "/testform",consumes = "application/json",
@@ -78,8 +77,8 @@ public class MainController {
 
 
     @RequestMapping("/")
-    String index(){
-        return "index.html";
+    public String index(){
+        return "index";
     }
 
     @RequestMapping("/hellos")

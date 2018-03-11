@@ -1,6 +1,6 @@
-# indi
+# hern
 
-> for game
+> A Vue.js project
 
 ## Build Setup
 

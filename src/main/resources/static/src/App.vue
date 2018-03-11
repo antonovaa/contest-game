@@ -1,90 +1,77 @@
 <template>
-  <!--<div username="app">-->
-    <!--<img src="./assets/logo.png">-->
-    <!--<h1>{{ msg }}</h1>-->
-    <!--<h2>Essential Links</h2>-->
-    <!--<ul>-->
-      <!--<li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>-->
-      <!--<li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>-->
-      <!--<li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>-->
-      <!--<li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>-->
-    <!--</ul>-->
-    <!--<h2>Ecosystem</h2>-->
-    <!--<ul>-->
-      <!--<li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>-->
-      <!--<li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>-->
-      <!--<li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>-->
-      <!--<li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>-->
-    <!--</ul>-->
-  <!--</div>-->
-<div username="app">
-  <h1>{{ msg2 }}</h1>
-  <div username="canvas" @mousemove="updateXY">
-{{x}}         {{y}}
+  <div class="wrapper">
+        <div class="my-header">
+          <header-my></header-my>
+        </div>
+
+        <div class="left-content-sidebar">
+          <registration></registration>
+          <news></news>
+        </div>
+
+    <chat></chat>
+    <general class="main-content"></general>
   </div>
-</div>
 </template>
 
 <script>
+  import Registration from './components/navigation/Registration.vue'
+  import HeaderMy from './components/header/HeaderMy.vue'
+  import Chat from './components/chat/Chat.vue'
+  import News from './components/navigation/News.vue'
+  import General from './components/main/general.vue'
+
   export default {
-    name: 'app4',
+    name: 'app',
     data() {
       return {
-        x:0,
-        y:0,
-        msg2: 'Welcome to Your Vue.js App'
+        msg: 'Welcome to Your Vue.js App',
+        msg1: '3',
+        msg2: 'Welcome to Your Vue.js App',
+        msg3: 'Welcome to Your Vue.js App'
       }
     },
-    methods:{
-      updateXY:function (event) {
-         this.x=event.offsetX;
-         this.y=event.offsetY;
-      }
+    components: {
+      HeaderMy,
+      Chat,
+      News,
+      Registration,
+      General
     }
   }
 </script>
 
 <style lang="scss">
-
-  #canvas{
-    width: 600px;
-    padding: 200px 20px;
-    text-align: center;
-    border: 1px solid #333;
+  $sidebar-width: 300px;
+  $primary-color:#9cff07;
+  .my-header {
+    width: 100%;
+    height: 100px;
+    border: 3px solid $primary-color;
+    position: fixed;
+  }
+  .wrapper{
+    position:relative;
+  }
+  .left-content-sidebar{
+    position: fixed;
+    left:0;
+    top:103px;
+    width:  $sidebar-width;
+  }
+  .main-content{
+    position: absolute;
+    top:103px;
+    left: $sidebar-width;
+    z-index: -1;
+  }
+  #chat-form{
+    position:fixed;
+    bottom:0;
+    left:$sidebar-width;
+    width: 456px;
+    z-index: 9;
   }
 
 
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-  }
-
-  body {
-    font-size: 33px;
-    color: #8ae00e;
-    background-color: #121212;
-    text-shadow: 0 0 5px #ff718c, 0 0 10px #66ffa1, 0 0 15px #caffe1, 0 0 20px #ff0000, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18
-  }
-
-  h1, h2 {
-    font-weight: normal;
-  }
-
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-
-  a {
-    color: #42b983;
-  }
 </style>
