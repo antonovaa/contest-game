@@ -2,11 +2,24 @@ package com.model;
 
 import org.springframework.security.core.GrantedAuthority;
 
-public enum Role implements GrantedAuthority{
-   USER;
+public class Role implements GrantedAuthority{
+
+   private String role;
+
+   public String getRole() {
+      return role;
+   }
+
+   public void setRole(String role) {
+      this.role = role;
+   }
+
+   public Role(String role) {
+      this.role = role;
+   }
 
    @Override
    public String getAuthority() {
-      return name();
+      return role;
    }
 }

@@ -2,15 +2,13 @@ package com.model;
 
 import com.model.interf.DomainObject;
 
-import java.util.UUID;
-
 /**
  * Created by Lord on 23.09.2017.
  */
 
 public class Person implements DomainObject{
 
-    private UUID uuid;
+    private int id;
 
     private String login;
 
@@ -31,12 +29,12 @@ public class Person implements DomainObject{
         this.login = login;
     }
 
-    public UUID getUuid() {
-        return uuid;
+    public int getId() {
+        return id;
     }
 
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getLogin() {

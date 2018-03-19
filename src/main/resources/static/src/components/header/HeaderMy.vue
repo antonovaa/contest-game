@@ -19,7 +19,7 @@
 </template>
 
 <script>
-  import { bus } from '../../main.js'
+//  import { bus } from '../../main.js'
 
   export default {
     data() {
@@ -29,12 +29,12 @@
         allMessages: '',
       }
     },
-    created(){
-      bus.$on('show-param',data=>{
-        console.log(data);
-        this.show=true;
-      })
-    },
+//    created(){
+//      bus.$on('show-param',data=>{
+//        console.log(data);
+//        this.show=true;
+//      })
+//    },
     methods: {
       clickForTest:function(a){
         this.$store.dispatch('setCurrentView',a);
@@ -44,6 +44,10 @@
     computed:{
       countTest:function () {
         return this.$store.state.count;
+      },
+      show:function () {
+        return this.$store.state.isAuthorised;
+
       }
     }
   }

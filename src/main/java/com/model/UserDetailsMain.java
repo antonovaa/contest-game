@@ -15,11 +15,16 @@ public class UserDetailsMain implements UserDetails {
 
    private List<Role> authorities;
 
+   private UserDetailsPerson userDetailsPerson;
 
    private boolean accountNonExpired;
    private boolean accountNonLocked;
    private boolean credentialsNonExpired;
    private boolean enabled;
+
+   public UserDetailsMain(UserDetailsPerson user) {
+      this.userDetailsPerson=user;
+   }
 
    public void setAuthorities(List<Role> authorities) {
       this.authorities = authorities;

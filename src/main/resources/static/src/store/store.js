@@ -5,10 +5,14 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+      isAuthorised:false,
       count: 0,
       currentViewNumber:1
     },
     mutations: {
+      setAuthorised(state,data){
+        state.isAuthorised=true;
+      },
       increment2 (state) {
         state.count++
       },
@@ -17,13 +21,15 @@ export default new Vuex.Store({
       }
     },
     actions: {
-      increment (context) {
+      incremen3t (context) {
         context.commit('increment2');
       },
       setCurrentView (context,data) {
         context.commit('setNumber',data);
         // console.log(data+' in store');
-
+      },
+      authorised(context,data){
+        context.commit('setAuthorised',data);
       }
     }
   })

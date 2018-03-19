@@ -2,57 +2,40 @@
   <div id="registreation">
     <div class="container">
       <div class="panel panel-login">
-        <div class="panel-heading align-items-center">
-          <div class="row">
-            <div class="col-6">
-              <!--<a href="#" >Login</a>-->
-              <router-link to="/login"><a class="active" id="login-form-link" v-on:click="loginFormLink"
-                                          href="#">Login</a></router-link>
-            </div>
-            <div class="col-6">
-              <a href="#" id="register-form-link" class="active" v-on:click="registerFormLink">Register</a>
-            </div>
-          </div>
-          <hr>
-        </div>
         <div class="panel-body">
           <div class="row">
             <div class="col-12">
-              <transition name="slide-fade">
-                <div v-if="show1" id="login-form">
-                  <keep-alive>
-                    <router-view></router-view>
-                  </keep-alive>
+              <form v-if="show2" id="register-form" role="form">
+                <div class="form-group">
+                  <input type="text" name="username"  v-model="username" id="usernameReg" tabindex="1"
+                         class="form-control"
+                         placeholder="Username" value="">
                 </div>
-              </transition>
-              <transition name="slide-fade2">
-                <form v-if="show2" id="register-form" action="/testformpass" method="post" role="form">
-                  <div class="form-group">
-                    <input type="text" name="username" id="username" tabindex="1" class="form-control"
-                           placeholder="Username" value="">
-                  </div>
-                  <div class="form-group">
-                    <input type="email" name="email" id="email" tabindex="1" class="form-control"
-                           placeholder="Email Address" value="">
-                  </div>
-                  <div class="form-group">
-                    <input type="password" name="password" id="password" tabindex="2" class="form-control"
-                           placeholder="Password">
-                  </div>
-                  <div class="form-group">
-                    <input type="password" name="confirmPassword" id="confirmPassword" tabindex="2" class="form-control"
-                           placeholder="Confirm Password">
-                  </div>
-                  <div class="form-group">
-                    <div class="row">
-                      <div class="col-sm-6 col-sm-offset-3">
-                        <input type="button" name="register-submit" id="register-submit" tabindex="4"
-                               class="form-control btn btn-register" value="Register Now">
-                      </div>
+                <div class="form-group">
+                  <input type="email"  v-model="email" name="email" id="email" tabindex="1" class="form-control"
+                         placeholder="Email Address" value="">
+                </div>
+                <div class="form-group">
+                  <input type="password" name="password" v-model="password"  id="passwordReg" tabindex="2"
+                         class="form-control"
+                         placeholder="Password">
+                </div>
+                <div class="form-group">
+                  <input type="password" name="confirmPassword" id="confirmPassword" tabindex="2"
+                         class="form-control"
+                         placeholder="Confirm Password">
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                      <input type="button" v-on:click="userRegistration" name="register-submit"
+                             id="register-submit" tabindex="4"
+                             class="form-control btn btn-register" value="Register Now">
                     </div>
                   </div>
-                </form>
-              </transition>
+                </div>
+              </form>
+              <!--</transition>-->
             </div>
           </div>
         </div>
@@ -63,16 +46,16 @@
 
 <script>
 
-  import Login from './Login.vue'
+  //  import Login from './Login.vue'
   import VueRouter from 'vue-router'
-  import axios from 'axios'
+  //  import axios from 'axios'
 
-  const router = new VueRouter({
-    routes: [{path: '/login', component: Login}]
-  });
+  //  const router = new VueRouter({
+  //    routes: [{path: '/login', component: Login}]
+  //  });
 
   export default {
-    router: router,
+//    router: router,
     data() {
       return {
         message: '',
@@ -80,37 +63,34 @@
         show1: false,
         show2: true,
         username: '',
-        password: ''
+        password: '',
+        email: ''
       }
     },
     computed: {
-      eversedMessage: function () {
+      reversedMessage: function () {
         // `this` указывает на экземпляр vm
         return this.message.split('').reverse().join('')
       }
     },
     methods: {
-      loginFormLink: function (event) {
-        this.show1 = true;
-        this.show2 = false;
-//        document.getElementById('login-form')
-      },
-      registerFormLink: function (event) {
-        this.show1 = false;
-        this.show2 = true;
-      },
-      testPost: function () {
-
-        axios.post('/testformlog', {
-          username: this.username,
-          password: this.password
-        })
-          .then(function (response) {
-            console.log(response);
+      userRegistration: function () {
+        axios.post('/UserRegistration', {
+            'userName': this.username,
+            'password': this.password,
+            'email': this.email,
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json;charset=UTF-8'
+            }
           })
-          .catch(function (error) {
-            console.log(error);
-          });
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
       }
     }
   }

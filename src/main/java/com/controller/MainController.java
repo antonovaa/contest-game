@@ -2,8 +2,13 @@ package com.controller;
 
 //import com.batis.AuthDao;
 //import com.model.Greeting;
+
 import com.model.LoginForm;
 import com.model.RegistrationForm;
+import com.model.UserDetailsMain;
+import java.security.Principal;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,10 +32,25 @@ public class MainController {
 //        return authDao.getAllPerson().toString();
 //    }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @RequestMapping("/d")
     @ResponseBody
     public String index2() {
         return "Добро пожжаловать на мою страничку, делать тут пока нечего";
+    }
+
+
+    @RequestMapping("/d3")
+    @ResponseBody
+    public String index3(Principal principal) {
+        return "d3 name  "+principal.getName();
+    }
+
+    @RequestMapping("/d4")
+    @ResponseBody
+    public String index4(Principal principal) {
+        UserDetailsMain user = (UserDetailsMain) SecurityContextHolder.getContext().getAuthentication().getPrincipal ();
+        return "d3 name  "+user.getUsername()+"  "+user.getAuthorities();
     }
 
 
@@ -78,7 +98,7 @@ public class MainController {
 
     @RequestMapping("/")
     public String index(){
-        return "index";
+        return "index.html";
     }
 
     @RequestMapping("/hellos")

@@ -1,13 +1,6 @@
 <template>
   <div>
 
-    <!--news-->
-    <!--<textarea rows="10" cols="45" name="text" disabled="disabled">-->
-      <!--{{allMessages}}-->
-      <!--das23231s1s 2s-->
-    <!--</textarea>-->
-    <!--<input type="text" v-model="message"/>-->
-    <!---->
 
     <div id="new">
       <h1>news</h1>
@@ -27,7 +20,7 @@
       }
     },
     computed: {
-      eversedMessage: function () {
+      reversedMessage: function () {
         // `this` указывает на экземпляр vm
         return this.message.split('').reverse().join('')
       }

@@ -48,7 +48,7 @@
       }
     },
     computed: {
-      eversedMessage: function () {
+      reversedMessage: function () {
         // `this` указывает на экземпляр vm
 //        return this.message.split('').reverse().join('')
       }

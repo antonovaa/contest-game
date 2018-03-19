@@ -5,8 +5,7 @@
         </div>
 
         <div class="left-content-sidebar">
-          <registration></registration>
-          <news></news>
+          <navigation-left></navigation-left>
         </div>
 
     <chat></chat>
@@ -15,11 +14,10 @@
 </template>
 
 <script>
-  import Registration from './components/navigation/Registration.vue'
   import HeaderMy from './components/header/HeaderMy.vue'
   import Chat from './components/chat/Chat.vue'
-  import News from './components/navigation/News.vue'
   import General from './components/main/general.vue'
+  import NavigationLeft from './components/navigation/NavigationLeft.vue'
 
   export default {
     name: 'app',
@@ -34,9 +32,8 @@
     components: {
       HeaderMy,
       Chat,
-      News,
-      Registration,
-      General
+      General,
+      NavigationLeft
     }
   }
 </script>
