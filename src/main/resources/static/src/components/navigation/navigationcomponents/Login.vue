@@ -87,8 +87,8 @@
       testPost: function () {
 
         axios.post('/UserLogin', {
-            username: this.username,
-            password: this.password
+            'userName': this.username,
+            'password': this.password
           },
           {
             headers: {
@@ -96,10 +96,11 @@
             }
           })
         .then((data) => {
-          console.log(data);
+          console.log('success  '+data);
         })
         .catch((data) => {
           this.$store.dispatch('authorised', 'qwe');
+          console.log(data)
         });
       }
     }

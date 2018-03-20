@@ -2,11 +2,8 @@ package com.controller;
 
 
 import com.dao.UserRepositoryImpl;
-import com.model.UserDetailsMain;
 import com.model.UserDetailsPerson;
-import java.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,26 +23,21 @@ public class Authorise {
 
    @RequestMapping(value = "/UserLogin", method = RequestMethod.POST)
    @ResponseBody
-   public String UserLogin(Principal principal) {
-      UserDetailsMain user = (UserDetailsMain) SecurityContextHolder.getContext()
-          .getAuthentication().getPrincipal();
-      return "d3 name  " + user.getUsername() + "  " + user.getAuthorities();
+   public String UserLogin(@RequestBody UserDetailsPerson userDetailsPerson) {
+      userRepository.findByUsername(userDetailsPerson.getUserName());
+      return "Успех";
    }
 
 
    @RequestMapping(value = "/UserRegistration", method = RequestMethod.POST)
    @ResponseBody
-   public String UserRegistration(
+   public int UserRegistration(
 //       @RequestParam("username") String username,
 //       @RequestParam("password") String password,
 //       @RequestParam("email") String email
        @RequestBody UserDetailsPerson userDetailsPerson
    ) {
       userRepository.saveUserDetailsMain(userDetailsPerson.getUserName(), userDetailsPerson.getPassword(), userDetailsPerson.getEmail());
-      UserDetailsMain user = (UserDetailsMain) SecurityContextHolder.getContext()
-          .getAuthentication().getPrincipal();
-      return "d3 name  " + user.getUsername() + "  " + user.getAuthorities();
+      return 0;
    }
-
-
 }

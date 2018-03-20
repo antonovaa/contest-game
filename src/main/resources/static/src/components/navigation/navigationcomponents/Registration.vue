@@ -85,10 +85,10 @@
               'Content-Type': 'application/json;charset=UTF-8'
             }
           })
-        .then(function (response) {
-          console.log(response);
+        .then((data) => {
+          console.log('success  '+response);
         })
-        .catch(function (error) {
+        .catch((data) =>  {
           console.log(error);
         });
       }

@@ -5,6 +5,8 @@ import com.model.UserDetailsMain;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -40,6 +42,11 @@ public class UserRepositoryImpl implements UserRepository {
       jdbcTemplate.queryForList(sqlRole,new Object[]{userDetailsMain.getId()},String.class).forEach(r-> roles.add(new Role(r)));
       userDetailsMain.setAuthorities(roles);
 
+      UsernamePasswordAuthenticationToken authenticationToken=
+          new UsernamePasswordAuthenticationToken(userDetailsMain.getUsername(),userDetailsMain.getPassword());
+
+      SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+
       return userDetailsMain;
    }
 
@@ -47,6 +54,9 @@ public class UserRepositoryImpl implements UserRepository {
    public void saveUserDetailsMain(String username,String password,String email) {
       String sql="INSERT INTO usersetails (username, password, email) VALUES(?,?,?)";
       jdbcTemplate.update(sql,new Object[]{username,password,email});
+
+      String sqlRole="SELECT public.add_user_role('"+username+"')";
+      jdbcTemplate.execute(sqlRole);
    }
 
 }
