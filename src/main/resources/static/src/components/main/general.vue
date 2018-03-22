@@ -1,6 +1,6 @@
 <template>
   <div id="general">
-    <h1 style="color:red">general</h1>
+    <h1 style="color:red">general3</h1>
     <component v-bind:is="this.currentView">
       <!-- изменяя vm.currentView можно переключаться между компонентами -->
     </component>

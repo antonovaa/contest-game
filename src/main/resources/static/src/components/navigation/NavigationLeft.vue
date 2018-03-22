@@ -3,13 +3,16 @@
     <div class="container">
       <div class="panel-heading align-items-center">
         <div class="row">
-          <div class="col-6">
+          <div class="col-4" v-show="!showLogout">
             <!--<a href="#" >Login</a>-->
             <a class="active" id="login-form-link" v-on:click="loginFormLink"
                href="#">Login</a>
           </div>
-          <div class="col-6">
+          <div class="col-4" v-show="!showLogout">
             <a href="#" id="register-form-link" class="active" v-on:click="registerFormLink">Register</a>
+          </div>
+          <div class="col-4" v-show="showLogout">
+            <a href="/logout" id="logout" class="active" v-on:click="logout">Logout</a>
           </div>
         </div>
       </div>
@@ -18,7 +21,7 @@
     </div>
     <div>
       <transition name="slide-fade">
-        <div v-show="showRegistration" id="register-form">
+        <div v-show="showRegistration&&!showLogout" id="register-form">
           <registration></registration>
         </div>
       </transition>
@@ -26,7 +29,7 @@
         <!---->
         <!--<transition name="slide-fade2">-->
         <transition name="slide-fade">
-        <div v-show="!showRegistration" id="login-form">
+        <div v-show="!showRegistration&&!showLogout" id="login-form">
           <login></login>
         </div>
       </transition>
@@ -47,13 +50,19 @@
     data() {
       return {
         showRegistration: true,
-        allMessages: '',
+        allMessages: ''
       }
     },
     computed: {
       reversedMessage: function () {
         // `this` указывает на экземпляр vm
         return this.message.split('').reverse().join('')
+      },
+      showLogout:function () {
+//        let temp=this.$store.state.isAuthorised;
+        return this.$store.state.isAuthorised === 1
+//        console.log('showLogout navigation - '+temp);
+//        return temp;
       }
     },
     components: {
@@ -68,6 +77,22 @@
       },
       registerFormLink: function (event) {
         this.showRegistration = true;
+      },
+      logout:function () {
+        this.$store.dispatch('setAuthorised', false);
+//
+//        axios.post('/logoutUser', {
+//          },
+//          {
+//            headers: {
+//              'Content-Type': 'application/json;charset=UTF-8'
+//            }
+//          })
+//        .then((req) => {
+//
+//        })
+//        .catch((req) => {
+//        });
       }
     }
   }

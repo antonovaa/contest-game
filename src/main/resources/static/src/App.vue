@@ -14,6 +14,7 @@
 </template>
 
 <script>
+
   import HeaderMy from './components/header/HeaderMy.vue'
   import Chat from './components/chat/Chat.vue'
   import General from './components/main/general.vue'
@@ -34,6 +35,29 @@
       Chat,
       General,
       NavigationLeft
+    },
+    created: function () {
+      {
+
+        axios.post('/IsAuth', {
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json;charset=UTF-8'
+            }
+          })
+        .then((req) => {
+          if (req.data == '0') {
+            this.$store.dispatch('setAuthorised', 1);
+          }
+        })
+        .catch((req) => {
+          console.log(req.data)
+        });
+      }
+
+
+      console.log('a is: ' + this.a)
     }
   }
 </script>

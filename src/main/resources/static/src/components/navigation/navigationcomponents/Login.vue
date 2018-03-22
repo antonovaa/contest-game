@@ -71,11 +71,16 @@
 
   };
 
+  //  var changeAuth=function () {
+  //    this.$store.dispatch('setAuthorised', true);
+  //  };
+
   export default {
     data() {
       return {
         password: '',
-        username: ''
+        username: '',
+        response: 0
       }
     },
     methods: {
@@ -96,11 +101,16 @@
             }
           })
         .then((data) => {
-          console.log('success  '+data);
+          this.response = data.data;
+          console.log('success  before ' + this.response);
+          if (this.response == '0') {
+            console.log('success  after ' + this.response);
+            this.$store.dispatch('setAuthorised', 1);
+          }
         })
         .catch((data) => {
-          this.$store.dispatch('authorised', 'qwe');
-          console.log(data)
+          this.response = data.data;
+          console.log(this.response)
         });
       }
     }

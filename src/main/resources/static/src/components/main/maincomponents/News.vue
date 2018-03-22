@@ -1,6 +1,8 @@
 <template>
   <div id="news">
-    news main
+    news main satsar
+    <img src="./images/vgif-ru-16001.gif" style="width: 70%"/>
+
   </div>
 </template>
 
@@ -9,9 +11,9 @@
   export default {
     data() {
       return {
+        show:true
       }
     },
-
   }
 </script>
 

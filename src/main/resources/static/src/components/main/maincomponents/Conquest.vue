@@ -1,6 +1,8 @@
 <template>
   <div id="conquest">
-    conquest main
+    conquest main  start
+    <img src="./images/vgif-ru-22335.gif" style="width: 50%"/>
+
   </div>
 </template>
 
@@ -9,6 +11,7 @@
   export default {
     data() {
       return {
+        show:true
       }
     },
 

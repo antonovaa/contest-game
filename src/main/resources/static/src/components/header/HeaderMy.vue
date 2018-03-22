@@ -24,7 +24,6 @@
   export default {
     data() {
       return {
-        show:false,
         message: '',
         allMessages: '',
       }
@@ -37,8 +36,8 @@
 //    },
     methods: {
       clickForTest:function(a){
+        console.log(a);
         this.$store.dispatch('setCurrentView',a);
-//        console.log(a+" in header");
       }
     },
     computed:{
@@ -46,8 +45,7 @@
         return this.$store.state.count;
       },
       show:function () {
-        return this.$store.state.isAuthorised;
-
+        return this.$store.state.isAuthorised===1;
       }
     }
   }

@@ -41,8 +41,7 @@ public class JdbcConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
   @Bean
   public JdbcTemplate ServiceData() {
-    JdbcTemplate jdbcTemplate= new JdbcTemplate(dataSource);
-    return jdbcTemplate;
+    return new JdbcTemplate(dataSource);
   }
 
 

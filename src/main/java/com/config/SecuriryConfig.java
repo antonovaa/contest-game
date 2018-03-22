@@ -1,9 +1,10 @@
 package com.config;
 
+import com.service.CustomAM;
 import com.service.UserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -20,21 +21,24 @@ public class SecuriryConfig extends WebSecurityConfigurerAdapter {
       this.userDetailService = userDetailService;
    }
 
-   @Autowired
-   protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-      auth.userDetailsService(userDetailService);
+//   @Autowired
+//   protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//      auth.userDetailsService(userDetailService);
+//   }
+
+   @Override
+   protected AuthenticationManager authenticationManager() throws Exception {
+      return new CustomAM(userDetailService);
    }
 
    @Override
    protected void configure(HttpSecurity http) throws Exception {
-      http
+      http.httpBasic().and()
           .authorizeRequests()
-          .antMatchers("/UserLogin", "/dist/*","/","/UserRegistration").permitAll()
+          .antMatchers("/UserLogin","/IsAuth", "/dist/*","/logout","/","/src/**","/src/assets/dollor.png","/UserRegistration").permitAll()
           .anyRequest().authenticated()
           .and()
-          .formLogin().loginPage("/index").successForwardUrl("/readme.txt").permitAll()
-          .and()
-          .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll()
+          .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll().logoutSuccessUrl("/")
           .and()
           .csrf().disable();
    }

@@ -17,10 +17,15 @@ public class UserDetailsMain implements UserDetails {
 
    private UserDetailsPerson userDetailsPerson;
 
-   private boolean accountNonExpired;
-   private boolean accountNonLocked;
-   private boolean credentialsNonExpired;
-   private boolean enabled;
+   private boolean accountNonExpired=true;
+   private boolean accountNonLocked=true;
+   private boolean credentialsNonExpired=true;
+   private boolean enabled=true;
+
+   public UserDetailsMain(String username, String password) {
+      this.username = username;
+      this.password = password;
+   }
 
    public UserDetailsMain(UserDetailsPerson user) {
       this.userDetailsPerson=user;
