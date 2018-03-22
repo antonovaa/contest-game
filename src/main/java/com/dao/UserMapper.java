@@ -19,4 +19,8 @@ public interface UserMapper {
 
    @Insert("INSERT INTO usersetails (username, password, email) VALUES(#{username},#{password},#{email})")
    void saveUser(@Param("username") String username,@Param("password") String password,@Param("email") String email);
+
+
+
+
 }
