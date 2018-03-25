@@ -7,7 +7,8 @@ export default new Vuex.Store({
     state: {
       isAuthorised:0,
       count: 0,
-      currentViewNumber:1
+      currentViewNumber:1,
+      name:''
     },
     mutations: {
       setAuthorisedBool(state,data){
@@ -18,6 +19,9 @@ export default new Vuex.Store({
       },
       setNumber (state,data) {
         state.currentViewNumber=data;
+      },
+      setUserName (state,data) {
+        state.name=data;
       }
     },
     actions: {
@@ -29,6 +33,9 @@ export default new Vuex.Store({
       },
       setAuthorised(context,data){
         context.commit('setAuthorisedBool',data);
+      },
+      setName(context,data){
+        context.commit('setUserName',data);
       }
     }
   })

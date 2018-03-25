@@ -20,13 +20,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Created by Lord on 22.09.2017.
  */
 @Controller
-//@RestController("/asd")
+//@RestController("/com.controller.asd")
 public class MainController {
 
 //    @Autowired
 //    private AuthDao authDao;
 //
-//    @RequestMapping("/asd")
+//    @RequestMapping("/com.controller.asd")
 //    @ResponseBody
 //    public String person() {
 //        return authDao.getAllPerson().toString();

@@ -1,7 +1,7 @@
 <template>
   <div id="news">
     news main satsar
-    <img src="./images/vgif-ru-16001.gif" style="width: 70%"/>
+    <img src="./images/vgif-ru-28923.gif" style="width: 70%"/>
 
   </div>
 </template>

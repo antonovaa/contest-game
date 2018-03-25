@@ -1,7 +1,7 @@
 <template>
   <div id="battle">
     battle main  start
-    <img src="./images/vgif-ru-17979.gif" style="width: 50%"/>
+    <img src="./images/vgif-ru-28923.gif" style="width: 50%"/>
 
   </div>
 </template>

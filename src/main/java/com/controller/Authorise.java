@@ -3,6 +3,8 @@ package com.controller;
 
 import com.dao.UserRepositoryImpl;
 import com.model.UserDetailsPerson;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,13 +27,18 @@ public class Authorise {
 
    @RequestMapping(value = "/UserLogin", method = RequestMethod.POST)
    @ResponseBody
-   public int UserLogin(@RequestBody UserDetailsPerson userDetailsPerson,HttpServletRequest request) {
+   public Map<String, String> UserLogin(@RequestBody UserDetailsPerson userDetailsPerson,HttpServletRequest request) {
+      Map<String,String> map=new HashMap<String, String>();
+
       try {
          request.login(userDetailsPerson.getUserName(),userDetailsPerson.getPassword());
-         return 0;
+         map.put("result","0");
+         map.put("name",userDetailsPerson.getUserName());
+         return map;
       } catch (Exception e) {
          e.printStackTrace();
-         return 1000;
+         map.put("result","1000");
+         return map;
       }
 
    }
@@ -51,10 +58,18 @@ public class Authorise {
 
    @RequestMapping(value = "/IsAuth", method = RequestMethod.POST)
    @ResponseBody
-   public int IsAuth(@RequestBody UserDetailsPerson userDetailsPerson,HttpServletRequest request) {
+   public Map<String, String> IsAuth(@RequestBody UserDetailsPerson userDetailsPerson,HttpServletRequest request) {
 
-         if(!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser")) return 0;
-         else return 1001;
+      Map<String,String> map=new HashMap<String, String>();
+         if(!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser")) {
+            map.put("result","0");
+            map.put("name",SecurityContextHolder.getContext().getAuthentication().getName());
+            return map;
+         }
+         else {
+            map.put("result","1001");
+            return map;
+         }
    }
 
 

@@ -42,7 +42,8 @@
 </script>
 
 <style>
-  #general img {
-    width: 1000px;
+  #general {
+    /*width: 1000px;*/
+
   }
 </style>

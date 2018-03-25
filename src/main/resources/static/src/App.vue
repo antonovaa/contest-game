@@ -47,8 +47,10 @@
             }
           })
         .then((req) => {
-          if (req.data == '0') {
+          if (req.data.result == '0') {
             this.$store.dispatch('setAuthorised', 1);
+            this.$store.dispatch('setName', this.response.name);
+
           }
         })
         .catch((req) => {
@@ -82,6 +84,7 @@
   }
   .main-content{
     position: absolute;
+    width: 100%;
     top:103px;
     left: $sidebar-width;
     z-index: -1;

@@ -1,7 +1,14 @@
 <template>
   <div id="about">
-    <img src="./images/vgif-ru-28923.gif" style="width: 50%"/>
+    <img src="./images/vgif-ru-28923.gif"/>
     <i>About start</i>
+<button v-if="!show" id="addNew" style="width: 35px;height: 35px;color: red;float: right">Add_new_article</button>
+    <div v-for="article in articles">
+      <h1>article.title</h1>
+      <img v-bind:src="article.image"/>
+      <p>{{article.description}}</p>
+    </div>
+
   </div>
 </template>
 
@@ -10,16 +17,33 @@
   export default {
     data() {
       return {
-        show:true,
+//        show:true,
         message:'',
         allMessages:'',
+        newTitle:'',
+        newImage:'',
+        newDescription:'',
+        articles:[],
       }
+
     },
+    computed:{
+      show:function () {
+        return this.$store.state.isAuthorised===1;
+      },
+    }
   }
 </script>
 
-<style>
-  #about img{
-    width: 1000px;
+<style lang="scss">
+  #about {
+    border: 3px solid orangered;
+    img {
+      width: 30%;
+    }
+    #addNew {
+      padding-right: 500px;
+      /*margin: 500px;*/
+    }
   }
 </style>

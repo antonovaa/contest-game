@@ -38,6 +38,8 @@ public class SecuriryConfig extends WebSecurityConfigurerAdapter {
           .antMatchers("/UserLogin","/IsAuth", "/dist/*","/logout","/","/src/**","/src/assets/dollor.png","/UserRegistration").permitAll()
           .anyRequest().authenticated()
           .and()
+          .formLogin().loginPage("/")
+          .and()
           .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll().logoutSuccessUrl("/")
           .and()
           .csrf().disable();

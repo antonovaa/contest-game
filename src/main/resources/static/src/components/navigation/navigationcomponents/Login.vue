@@ -103,9 +103,11 @@
         .then((data) => {
           this.response = data.data;
           console.log('success  before ' + this.response);
-          if (this.response == '0') {
+          if (this.response.result == '0') {
+
             console.log('success  after ' + this.response);
             this.$store.dispatch('setAuthorised', 1);
+            this.$store.dispatch('setName', this.response.name);
           }
         })
         .catch((data) => {
