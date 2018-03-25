@@ -35,7 +35,7 @@ public class SecuriryConfig extends WebSecurityConfigurerAdapter {
    protected void configure(HttpSecurity http) throws Exception {
       http.httpBasic().and()
           .authorizeRequests()
-          .antMatchers("/UserLogin","/IsAuth", "/dist/*","/logout","/","/src/**","/src/assets/dollor.png","/UserRegistration").permitAll()
+          .antMatchers("/UserLogin","/IsAuth", "/dist/*","/logout","/","/testarray","/src/**","/src/assets/dollor.png","/UserRegistration").permitAll()
           .anyRequest().authenticated()
           .and()
           .formLogin().loginPage("/")

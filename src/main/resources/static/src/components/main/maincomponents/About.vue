@@ -3,16 +3,23 @@
     <img src="./images/vgif-ru-28923.gif"/>
     <i>About start</i>
 <button v-if="!show" id="addNew" style="width: 35px;height: 35px;color: red;float: right">Add_new_article</button>
+
+   <addAboutComponent></addAboutComponent>
+
     <div v-for="article in articles">
-      <h1>article.title</h1>
-      <img v-bind:src="article.image"/>
-      <p>{{article.description}}</p>
+      <!--<h1>article.description</h1>-->
+      <!--<img v-bind:src="article.image"/>-->
+      <!--<p>{{article.description}}</p>-->
+
+
     </div>
 
   </div>
 </template>
 
 <script>
+
+  import addAboutComponent from './About/AddAboutComponent.vue'
 
   export default {
     data() {
@@ -25,7 +32,9 @@
         newDescription:'',
         articles:[],
       }
-
+    },
+    components:{
+      addAboutComponent
     },
     computed:{
       show:function () {

@@ -4,6 +4,8 @@
       <!--{{this.allMessages}}-->
     <!--</textarea>-->
     <!--<input type="text" v-model="this.message"/>-->
+    <button v-on:click="showChat=!showChat">свернуть</button>
+    <div v-if="showChat">
     <div class="container">
       <img src="https://www.w3schools.com/w3images/bandmember.jpg" alt="Avatar">
       <p>Hello. How are you today?</p>
@@ -27,6 +29,7 @@
       <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
       <span class="time-left">11:05</span>
     </div>
+    </div>
   </div>
 </template>
 
@@ -37,9 +40,11 @@
       return {
         message:'',
         allMessages:'',
+        showChat:true
       }
     },
     methods: {
+
       sendMessages: function () {
 
       },
@@ -59,7 +64,7 @@
 <style>
 
   /* Chat containers */
-  .container {
+  #chat-form .container {
     border: 2px solid #dedede;
     background-color: #f1f1f1;
     border-radius: 5px;
@@ -74,14 +79,14 @@
   }
 
   /* Clear floats */
-  .container::after {
+  #chat-form .container::after {
     content: "";
     clear: both;
     display: table;
   }
 
   /* Style images */
-  .container img {
+  #chat-form .container img {
     float: left;
     max-width: 60px;
     width: 100%;
@@ -90,7 +95,7 @@
   }
 
   /* Style the right image */
-  .container img.right {
+  #chat-form .container img.right {
     float: right;
     margin-left: 20px;
     margin-right:0;
