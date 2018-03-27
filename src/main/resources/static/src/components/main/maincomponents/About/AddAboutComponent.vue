@@ -28,10 +28,15 @@
         </div>
 
         <div v-if="filesmain[0]" class="col-8">
-          <textarea id="textarea" type="text" v-model="newDescription"/>
+          <div class="container">
+            <div class="row">
+              <div class="col-8"><label for="newDescription">Описание</label><textarea
+                id="newDescription" type="text" v-model="newDescription"></textarea></div>
+              <div class="col-4"><label for="jotting">Краткое описание </label><textarea
+                id="jotting" type="text" v-model="jotting"></textarea></div>
+            </div>
+          </div>
         </div>
-
-
       </div>
     </div>
     <button @click="upload()">Отправить</button>
@@ -52,8 +57,9 @@
         newTitle: '',
         newImage: '',
         newDescription: '',
+        jotting: '',
         articles: [],
-        filesmain:[]
+        filesmain: []
       }
 
     },
@@ -76,17 +82,18 @@
       createImage(file) {
         var reader = new FileReader();
         reader.onload = (e) => {
-          this.filesmain.push({name:file.name, image:e.target.result});
+          this.filesmain.push({name: file.name, image: e.target.result});
         };
         reader.readAsDataURL(file);
       },
       removeImage: function (e) {
-        this.filesmain.splice(this.filesmain.indexOf(e),1);
+        this.filesmain.splice(this.filesmain.indexOf(e), 1);
       },
       upload() {
         var jsonString = {
-//          description: this.newDescription
-          'filesmain': this.filesmain
+          description: this.newDescription,
+          'files': this.filesmain,
+          jotting: this.jotting
         };
 
         axios.post('/upload',
@@ -102,45 +109,19 @@
           }
         })
         .catch((req) => {
-          console.log("Error "+ req.data)
+          console.log("Error " + req.data)
         });
       },
       testarray() {
 
-
-        var jsonString = {
-
-          "key1":[
-
-          {"modelNumber":"95000-8740","qty":"2"},
-
-          {"modelNumber":"9500098740","qty":"5"}
-
-        ],
-
-          "key2":[
-
-          {"modelNumber":"94100-0561","qty":"2"},
-
-          {"modelNumber":"2941780060","qty":"3"}
-
-        ]
-        };
-
-        axios.post('/testarray',
-          jsonString,
-          {
-            headers: {
-              'Content-Type': 'application/json;charset=UTF-8;'
-            }
-          })
+        axios.post('/testarray')
         .then((req) => {
           if (req.data.result == '0') {
             console.log("SuccessFull");
           }
         })
         .catch((req) => {
-          console.log("Error "+ req.data)
+          console.log("Error " + req.data)
         });
       }
     }
@@ -150,11 +131,16 @@
 <style lang="scss">
 
 
-  #textarea{
-    height: inherit;
+  #newDescription {
     width: 100%;
     overflow: auto;
-    height: 200px;
+    height: 300px;
+  }
+
+  #jotting {
+    width: 100%;
+    overflow: auto;
+    height: 100px;
   }
 
   .container {

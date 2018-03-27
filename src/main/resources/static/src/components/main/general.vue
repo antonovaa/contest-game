@@ -1,7 +1,8 @@
 <template>
   <div id="general">
     <h1 style="color:red">general3</h1>
-    <component v-bind:is="this.currentView">
+    <component v-bind:is="this.currentView" >
+      <slot :number="svn"></slot>
       <!-- изменяя vm.currentView можно переключаться между компонентами -->
     </component>
 <i>{{currentView}}</i>
@@ -19,7 +20,8 @@
     data() {
       return {
         message: '',
-        allMessages: ''
+        allMessages: '',
+        cvn:''
       }
     },
     components: {
@@ -31,11 +33,12 @@
     },
     computed:{
       currentView:function() {
-        if (this.$store.state.currentViewNumber == 1) {return 'about';}
-        if (this.$store.state.currentViewNumber == 2) {return 'conquest';}
-        if (this.$store.state.currentViewNumber == 3) {return 'review';}
-        if (this.$store.state.currentViewNumber == 4) {return 'news';}
-        if (this.$store.state.currentViewNumber == 5) {return 'battle';}
+        this.svn=this.$store.state.currentViewNumber;
+        if (this.cvn == 1) {return 'about';}
+        if (this.cvn == 2) {return 'conquest';}
+        if (this.cvn == 3) {return 'review';}
+        if (this.cvn == 4) {return 'news';}
+        if (this.cvn == 5) {return 'battle';}
       }
     }
   }

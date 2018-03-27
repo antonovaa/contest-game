@@ -7,7 +7,12 @@
   <groupId>contest-game</groupId>
   <artifactId>contest-game</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <modules>
+    <module>../dependencies/scripts</module>
+    <module>../dependencies/Mainform</module>
+    <module>../dependencies/contest-game-sourse</module>
+  </modules>
+  <packaging>pom</packaging>
 
   <name>Contest game</name>
   <description>Spring Boot Web Application Contest Game</description>
