@@ -33,7 +33,7 @@ private final UserDetailServiceImpl userDetailService;
          throw new DisabledException("1001");
       }
       if (!new BCryptPasswordEncoder().matches(password, user.getPassword())) {
-         throw new BadCredentialsException("1000");
+         throw new BadCredentialsException("1002");
       }
       return new UsernamePasswordAuthenticationToken(username, password, user.getAuthorities());
    }

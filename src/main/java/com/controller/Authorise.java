@@ -43,18 +43,18 @@ public class Authorise {
 
    }
 
-//   @RequestMapping(value = "/logoutUser", method = RequestMethod.POST)
-//   @ResponseBody
-//   public String logout(HttpServletRequest request) {
-//      try {
-//         request.logout();
-//         return "index";
-//      } catch (Exception e) {
-//         e.printStackTrace();
-//         return "1000";
-//      }
-//
-//   }
+   @RequestMapping(value = "/logoutUser", method = RequestMethod.POST)
+   @ResponseBody
+   public String logout(HttpServletRequest request) {
+      try {
+         request.logout();
+         return "index";
+      } catch (Exception e) {
+         e.printStackTrace();
+         return "1000";
+      }
+
+   }
 
    @RequestMapping(value = "/IsAuth", method = RequestMethod.POST)
    @ResponseBody

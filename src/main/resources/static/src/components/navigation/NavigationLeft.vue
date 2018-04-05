@@ -12,7 +12,7 @@
             <a href="#" id="register-form-link" class="active" v-on:click="registerFormLink">Register</a>
           </div>
           <div class="col-4" v-show="showLogout">
-            <a href="/logout" id="logout" class="active" v-on:click="logout">Logout</a>
+            <a id="logout" class="active" v-on:click="logout">Logout</a>
           </div>
         </div>
       </div>
@@ -81,18 +81,19 @@
       logout:function () {
         this.$store.dispatch('setAuthorised', false);
 //
-//        axios.post('/logoutUser', {
-//          },
-//          {
-//            headers: {
-//              'Content-Type': 'application/json;charset=UTF-8'
-//            }
-//          })
-//        .then((req) => {
-//
-//        })
-//        .catch((req) => {
-//        });
+        axios.post('/logoutUser', {
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json;charset=UTF-8'
+            }
+          })
+        .then((req) => {
+          console.log(req.data);
+        })
+        .catch((req) => {
+          console.log(req.data);
+        });
       }
     }
   }
