@@ -73,29 +73,37 @@ public class Authorise {
    public Map<String, String> IsAuth(@RequestBody UserDetailsPerson userDetailsPerson,HttpServletRequest request) {
 
       Map<String,String> map=new HashMap<String, String>();
-
-      //todo get cookie and check
-
-      String cVal=Stream
+      String cVal = Stream
           .of(request.getCookies())
-          .filter(e->e.getName().equals("CsrfCookie"))
+          .filter(e -> e.getName().equals("CsrfCookie"))
           .map(Cookie::getValue)
           .findFirst().orElse("");
-      UserDetailsMain userDetailsMain=rememberMeRepository.getUserDetailsMainByCookie(cVal);
-      if(userDetailsMain!=null){
-         try {
-            request.login(userDetailsMain.getUsername(),userDetailsMain.getPassword());
-         } catch (ServletException e) {
-            e.printStackTrace();
+      //todo get cookie and check
+
+      if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated() &&
+          !SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser")) {
+         map.put("result", "0");
+         map.put("name", SecurityContextHolder.getContext().getAuthentication().getName());
+         return map;//authorised success (principle in memory context) (was not closed browser)
+      } else if (!cVal.equals("")) {
+         UserDetailsMain userDetailsMain = rememberMeRepository.getUserDetailsMainByCookie(cVal);
+         if (userDetailsMain != null) {
+            try {
+               request.login(userDetailsMain.getUsername(), userDetailsMain.getPassword());
+               map.put("result", "0");
+               map.put("name", SecurityContextHolder.getContext().getAuthentication().getName());
+               return map;//authorised success (principle in cookie) (was closed browser)
+            } catch (ServletException e) {
+               e.printStackTrace();
+               map.put("result", "1008");//failed Authorisation Error
+               return map;
+            }
          }
+         map.put("result", "1009");//not found principle
+         return map;
       }
-         if(!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser")) {
-            map.put("result","0");
-            map.put("name",SecurityContextHolder.getContext().getAuthentication().getName());
-            return map;
-         }
          else {
-            map.put("result","1001");
+         map.put("result", "1010");//was not authorised once yet time
             return map;
          }
    }
