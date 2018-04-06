@@ -17,13 +17,13 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 import org.springframework.security.web.session.SessionManagementFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.WebUtils;
 
@@ -36,7 +36,8 @@ public class SecuriryConfig extends WebSecurityConfigurerAdapter {
    private final CustomAuthenticationSuccessHandler handler;
 
    @Autowired
-   public SecuriryConfig(UserDetailServiceImpl userDetailService, DataSource dataSource,
+   public SecuriryConfig(UserDetailServiceImpl userDetailService,
+       DataSource dataSource,
        CustomAuthenticationSuccessHandler handler) {
       this.userDetailService = userDetailService;
       this.dataSource = dataSource;
@@ -63,7 +64,7 @@ public class SecuriryConfig extends WebSecurityConfigurerAdapter {
           .and()
           .formLogin().loginPage("/")
           //successHandler(handler)
-//            .and().rememberMe().
+//            .and().rememberMe().rememberMeServices(rememberMeService())
 //          rememberMeParameter("remember-me").
 //          tokenRepository(persistentTokenRepository()).tokenValiditySeconds(86400)
 //          .and()
@@ -72,6 +73,11 @@ public class SecuriryConfig extends WebSecurityConfigurerAdapter {
           .and().csrf().csrfTokenRepository(csrfTokenRepository())
           .and().addFilterAfter(csrfHeaderFilter(), SessionManagementFilter.class);
    }
+
+//   private RememberMeServices rememberMeService() {
+//
+//      return new RememberMeServiceImpl("testing",userDetailService);
+//   }
 
    @Bean
    public PersistentTokenRepository persistentTokenRepository() {

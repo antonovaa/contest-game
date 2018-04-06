@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface UserMapper {
 
-   @Select("select * from public.usersetails u WHEre u.username = #{username}")
+   @Select("select u.user_id,u.username,u.password from public.usersetails u WHEre u.username = #{username}")
    UserDetailsMain getUser(@Param("username") String username);
 
    @Select("select u.role from public.userroles u WHEre u.user_id=#{user_id}")
